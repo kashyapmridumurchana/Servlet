@@ -1,27 +1,28 @@
-package com.bridgelabz.servlet;
+package com.bridgelabz.model;
 
 public class User
 {
 String name;
 String password;
 String email;
-long telno;
+long telNo;
 
 
-User()
+public User()
 {
 	this.name=name;
 	this.password=password;
 	this.email=email;
-	this.telno=telno;
+	this.telNo=telNo;
 	
 }
+
 public User(String name, String password, String email, long tel) {
 	super();
 	this.name = name;
 	this.password = password;
 	this.email = email;
-	this.telno = tel;
+	this.telNo = tel;
 	
 }
 public String getName() {
@@ -43,10 +44,10 @@ public void setEmail(String email) {
 	this.email = email;
 }
 public long getTel() {
-	return telno;
+	return telNo;
 }
 public void setTel(long tel) {
-	this.telno = tel;
+	this.telNo = tel;
 }
 
 
