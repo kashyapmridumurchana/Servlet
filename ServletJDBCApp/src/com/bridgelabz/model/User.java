@@ -2,6 +2,7 @@ package com.bridgelabz.model;
 
 public class User
 {
+int id;
 String name;
 String password;
 String email;
@@ -10,6 +11,7 @@ long telNo;
 
 public User()
 {
+	int id;
 	this.name=name;
 	this.password=password;
 	this.email=email;
@@ -17,14 +19,24 @@ public User()
 	
 }
 
-public User(String name, String password, String email, long tel) {
+public User(int id,String name, String password, String email, long tel) {
 	super();
+	this.id=id;
 	this.name = name;
 	this.password = password;
 	this.email = email;
 	this.telNo = tel;
 	
 }
+
+public int getId() {
+	return id;
+}
+
+public void setId(int id) {
+	this.id = id;
+}
+
 public String getName() {
 	return name;
 }

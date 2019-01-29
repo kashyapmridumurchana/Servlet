@@ -31,6 +31,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
 <url-pattern>/logout</url-pattern>
 </servlet-mapping>
 
+<servlet>
+<servlet-name>ProfileServlet</servlet-name>
+<servlet-class>com.bridgelabz.servlet.ProfileServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>ProfileServlet</servlet-name>
+<url-pattern>/profile</url-pattern>
+</servlet-mapping>
+
+
+
 <filter>
 <filter-name>Validation</filter-name>
 <filter-class>com.bridgelabz.validation.Validation</filter-class>
@@ -40,6 +51,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
 <url-pattern>/registration</url-pattern>
 </filter-mapping>
 
+<servlet>
+  <servlet-name>edit</servlet-name>
+  <servlet-class>com.bridgelabz.servlet.EditServlet</servlet-class>
+</servlet>
+ <servlet-mapping>
+<servlet-name>edit</servlet-name>
+  <url-pattern>/edit</url-pattern>
+  </servlet-mapping>
+  
 
 
 

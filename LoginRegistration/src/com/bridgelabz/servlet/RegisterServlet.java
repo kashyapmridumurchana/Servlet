@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet
 	    System.out.println(telNo);
 	  
 	    
-	    User user=new User(name, password, email, telNo);
+	    //User user=new User(name, password, email, telNo);
 	    
 	    
 	    

@@ -20,7 +20,7 @@ public class RegisterServlet extends HttpServlet {
 		long telNo = Long.parseLong(request.getParameter("telNo"));
 		System.out.println(telNo);
 
-		User user = new User(name, password, email, telNo);
+		User user = new User(0,name, password, email, telNo);
 		try {
 			MySQLConnUtils.registration(user);
 		} catch (Exception e) {

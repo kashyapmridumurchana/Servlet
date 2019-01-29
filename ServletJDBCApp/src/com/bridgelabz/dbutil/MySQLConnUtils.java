@@ -46,7 +46,7 @@ public class MySQLConnUtils
 	       
 	}
 	
-	public static boolean login(User user) throws ClassNotFoundException, SQLException
+	public static User login(User user) throws ClassNotFoundException, SQLException
 	{
 	String string="Select * from User where name=? and password=?";
 	Connection conn=getMySQLConnection();
@@ -54,14 +54,26 @@ public class MySQLConnUtils
 	ps.setString(1, user.getName());
 	ps.setString(2, user.getPassword());
 	ResultSet resultSet=ps.executeQuery();
+	User user1=null;
 	 while (resultSet.next()) 
 	 {
-		return true; 
+  user1=new User(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getLong(5));		
        
      }
-	return false;
+	return user1;
 		
 	}
-	
+	public static void edit(User user) throws ClassNotFoundException, SQLException
+	{
+		String query = "UPDATE User SET email = ? ,password=? ,telNo=? WHERE name = ?";
+		Connection conn=getMySQLConnection();
+		 PreparedStatement stmt = conn.prepareStatement(query);
+		 stmt.setString(1, user.getEmail());
+		 stmt.setString(2, user.getPassword());
+		 stmt.setString(4, user.getName());
+		 stmt.setLong(3, user.getTel());
+		 int i=stmt.executeUpdate();
+		 System.out.println(i);
+}
 	
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,26 +22,20 @@ public class LoginServlet extends HttpServlet
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		try {
-			handleRequest(request, response);
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
-
-	}
-
-	private void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException, SQLException
-	{
+		
 		response.setContentType("text/html");
 		String name=request.getParameter("name");
+		
 		String password=request.getParameter("password");
 		PrintWriter out = response.getWriter();
 
 		out.write("<html><body><div id='serlvetResponse' style='text-align: center;'>");
 
 		RequestDispatcher rdObj = null;
-		User user=new User(name, password, null, 0);
+		User user=new User(0,name, password, null, 0);
+		
+		
+		
 		// Checking For Null & Empty Values
 
 		if(name == null || password == null || "".equals(name) || "".equals(password)) {
@@ -54,14 +49,28 @@ public class LoginServlet extends HttpServlet
 		}
 		else
 		{
-			Boolean bl=MySQLConnUtils.login(user);
-			if(bl)
+			
+			
+			User user1=null;
+			try {
+				user1 = MySQLConnUtils.login(user);
+			} catch (ClassNotFoundException | SQLException e) {
+				
+				e.printStackTrace();
+			}
+			if(user1!=null)
 			{
 				HttpSession session = request.getSession(true);
-				session.setAttribute("user", name);
-				rdObj = request.getRequestDispatcher("/Logout.html");
+				session.setAttribute("user", user1);
+				Cookie ck=new Cookie("user",name);//creating cookie object  
+				ck.setMaxAge(30*60);
+			    response.addCookie(ck);//add
+			   
+				rdObj = request.getRequestDispatcher("/ProfilePage.jsp");
 
 				rdObj.forward(request, response); 
+				 
+			      
 			}
 			else
 			{
